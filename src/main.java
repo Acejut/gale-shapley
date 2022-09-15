@@ -28,13 +28,14 @@ public class main
 
 	public static void main(String[] args)
 	{
+		printStudentInfo();
+		
 		System.out.println("==========Original Example Pairing==========\n");
 		printHospitalInfo();
 		galeShapely();
 		printResult();
 		System.out.println("\n=================================================\n");
 		
-		System.out.println();
 		shufflePrefRows();
 		
 		System.out.println("\n==========Random Row Example Pairing==========\n");
@@ -52,10 +53,10 @@ public class main
 		{
 			System.out.printf("(%d)%s student preference is: ", i, hNames[i]);
 			for (int j = 0; j < size; j++)
-				System.out.printf("%c ", hPrefs[i][j]+118);
+				System.out.printf("%c ", hPrefs[i][j] + 118);
 			System.out.println();
 		}
-		System.out.println("--------------------------------------------");
+		System.out.println();
 	}
 	
 	private static void galeShapely()
@@ -124,6 +125,8 @@ public class main
 	
 	private static void printResult()
 	{
+		System.out.println("---------------Pairing Results---------------");
+		
 		for (int i = 0; i < size; i++)
 			System.out.printf("Hospital %s matches with student %c\n", hNames[i], finalMatches[i]+118);
 	}
@@ -146,5 +149,21 @@ public class main
 				hNames[i1] = temp2;
 			}
 		}
+	}
+	
+	private static void printStudentInfo()
+	{
+		System.out.println("----------Student Preference----------");
+		for (int i = 0; i < size; i++)
+			System.out.println("Student " + (char) (i+118) + " preference is " + printRow(sPrefs[i]));
+		System.out.println();
+	}
+	
+	private static String printRow(int[] pref)
+	{
+		String s = "";
+		for (int i = 0; i < size; i++)
+			s += "'" + hNames[pref[i]] + "' ";
+		return s;
 	}
 }
